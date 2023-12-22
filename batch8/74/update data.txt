@@ -1,0 +1,18 @@
+changeStatus(status: string, row: any) {
+    let temp: string = ""
+    if (status == "st") {
+      temp = "started";
+    } else if (status == "clos") {
+      temp = "closed";
+    } else if (status == "can") {
+      temp = "Cancled";
+    }
+    this.dataServ.changeProjStatus(row, { status: temp }).subscribe(() => {
+      this.getProject()
+    })
+  }
+
+
+changeProjStatus(key: string, status: any) {
+    return this.http.patch(this.url + 'project/' + key + '.json', status)
+  }
